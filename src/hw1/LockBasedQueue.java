@@ -8,14 +8,14 @@ class LockBasedQueue<Integer> {
 	Integer[] items;
 	Lock lock;
 
-	public LockBasedQueue(int capacity) {
+	public LockBasedQueue(int size) {
 		head = 0;
 		tail = 0;
 		lock = new ReentrantLock();
-		items = (Integer[]) new Object[capacity];
+		items = (Integer[]) new Object[size];
 	}
 
-	public void enq(Integer x) {
+	public void add(Integer x) {
 		lock.lock();
 		try {
 			if (tail - head == items.length)
@@ -29,7 +29,7 @@ class LockBasedQueue<Integer> {
 		}
 	}
 
-	public void deq() {
+	public void remove() {
 		lock.lock();
 		try {
 			if (tail == head)
