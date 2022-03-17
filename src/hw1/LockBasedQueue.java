@@ -3,7 +3,7 @@ package hw1;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-class LockBasedQueue<Integer> {
+class LockBasedQueue {
 	int head, tail;
 	Integer[] items;
 	Lock lock;
@@ -12,7 +12,7 @@ class LockBasedQueue<Integer> {
 		head = 0;
 		tail = 0;
 		lock = new ReentrantLock();
-		items = (Integer[]) new Object[size];
+		items = new Integer[size];
 	}
 
 	public void add(Integer x) {

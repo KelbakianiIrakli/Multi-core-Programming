@@ -12,9 +12,6 @@ class PrimesFinderThread extends Thread {
 		this.upperBound = upperBound;
 	}
 
-	public PrimesFinderThread(int value ) {
-		this.value = value;
-	}
 
 	public void run() {
 		PrimesFinder.primesFinder(value, upperBound);

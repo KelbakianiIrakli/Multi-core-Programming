@@ -27,9 +27,9 @@ public class Exercise2 {
 	}
 
 	private static void threadManager2(int number, int threads) {
-		ArrayList<PrimesFinderThread2> threadsList = new ArrayList<>();
+		ArrayList<PrimesFinderThreadExercise2> threadsList = new ArrayList<>();
 		for (int i = 0; i < threads; i++) {
-			PrimesFinderThread2 temp = new PrimesFinderThread2(Exercise2.counter.get(), number);
+			PrimesFinderThreadExercise2 temp = new PrimesFinderThreadExercise2(Exercise2.counter.get(), number);
 			temp.start();
 			threadsList.add(temp);
 		}
@@ -37,7 +37,6 @@ public class Exercise2 {
 			try {
 				threadsList.get(i).join();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -45,31 +44,31 @@ public class Exercise2 {
 
 }
 
-class PrimesFinderThread2 extends Thread {
+class PrimesFinderThreadExercise2 extends Thread {
 	
 	long value = 0;
-	int upperBound = -1;
+	long upperBound = -1;
 
-	public PrimesFinderThread2(long lowerBound, int upperBound) {
+	public PrimesFinderThreadExercise2(long lowerBound, long upperBound) {
 		value = lowerBound;
 		this.upperBound = upperBound;
 	}
 
-	public PrimesFinderThread2(int value) {
+	public PrimesFinderThreadExercise2(int value) {
 		this.value = value;
 	}
 
 	public void run() {
-		primesFinder2(value, upperBound);
+		primesFinderExercise2(value, upperBound);
 	}
 
-	public void primesFinder2(long value, int upperBound) {
-		long temp = Exercise2.counter.getAndIncrement();
+	public void primesFinderExercise2(long value, long upperBound) {
+		long temp = Exercise2.counter.get();
 		while (temp < upperBound) {
 			if (isNumberPrime(temp))
 				System.out.println(temp + " ");
 
-			temp = Exercise2.counter.getAndIncrement();
+			temp = Exercise2.counter.incrementAndGet();
 		}
 	}
 

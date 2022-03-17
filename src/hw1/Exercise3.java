@@ -1,17 +1,16 @@
 package hw1;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Exercise3 {
 	public static void main(String args[]) throws Exception {
 		Integer N = 10;
-		Integer threadNumbers = 5;
-		LockBasedQueue<Integer> queue = new LockBasedQueue(N);
+		Integer T = 5;
+		LockBasedQueue queue = new LockBasedQueue(N);
 
 		ArrayList<Thread> threadsList = new ArrayList<>();
-		for (int i = 0; i < threadNumbers; i++) {
+		for (int i = 0; i < T; i++) {
 			Thread producer = producer(N, queue);
 			Thread consumer = consumerThread(queue);
 			threadsList.add(producer);
@@ -28,7 +27,7 @@ public class Exercise3 {
 		}
 	}
 
-	private static Thread consumerThread(LockBasedQueue<Integer> queue) {
+	private static Thread consumerThread(LockBasedQueue queue) {
 		Thread consumer = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -45,7 +44,7 @@ public class Exercise3 {
 		return consumer;
 	}
 
-	private static Thread producer(Integer N, LockBasedQueue<Integer> queue) {
+	private static Thread producer(Integer N, LockBasedQueue queue) {
 		Thread producer = new Thread(new Runnable() {
 			@Override
 			public void run() {
